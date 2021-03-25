@@ -1,0 +1,5 @@
+1) conda list
+
+2) conda list
+
+3) conda search  numpy --info
