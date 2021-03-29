@@ -6,5 +6,5 @@ x2 = Vector(0, 9.0)
 print(x1)
 print(x2)
 
-#print(x1 * x2)
+print(x1 * x2)
 
