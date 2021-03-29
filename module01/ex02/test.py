@@ -1,9 +1,10 @@
 from vector import Vector
 
-x1 = Vector(109, 200)
-x2 = Vector(9, 100)
-x2 = x1 / x2
+x1 = Vector(11)
+x2 = Vector(0, 9.0)
 
-
+print(x1)
 print(x2)
+
+#print(x1 * x2)
 
