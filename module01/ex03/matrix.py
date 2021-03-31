@@ -190,4 +190,3 @@ class Matrix:
             exit("Received Type error")
 
     __rmul__ = __mul__
-

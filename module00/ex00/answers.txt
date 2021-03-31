@@ -1,5 +1,8 @@
-1) conda list
+1) python3 -m pip list
 
-2) conda list
+2) python3 -m pip list
 
 3) conda search  numpy --info
+
+
+4) python3 -m pip freeze > requirements.txt
