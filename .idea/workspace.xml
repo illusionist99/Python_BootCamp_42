@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fef96ca3-ac67-43b1-8120-cbe88ce22d8a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/module02/ex01/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/module02/ex01/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1qWxtiE0baZNxjCBOT7Nblvyazn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fef96ca3-ac67-43b1-8120-cbe88ce22d8a" name="Default Changelist" comment="" />
+      <created>1617209364668</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1617209364668</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1510" y="590" key="#Notifications" timestamp="1617209799950">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1510" y="590" key="#Notifications/0.0.2560.1440@0.0.2560.1440" timestamp="1617209799950" />
+    <state x="1412" y="482" key="FileChooserDialogImpl" timestamp="1617209528648">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="1412" y="482" key="FileChooserDialogImpl/0.0.2560.1440@0.0.2560.1440" timestamp="1617209528648" />
+    <state x="937" y="347" key="SettingsEditor" timestamp="1617383738029">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="937" y="347" key="SettingsEditor/0.0.2560.1440@0.0.2560.1440" timestamp="1617383738029" />
+  </component>
+</project>

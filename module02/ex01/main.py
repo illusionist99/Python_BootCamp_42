@@ -1,10 +1,14 @@
-def what_are_the_vars(*args):
+def what_are_the_vars(*args, **kwargs):
     index = 0
+    instance = ObjectC()
     for arg in args:
-        print("var_{index}: {arg}".format(index=index, arg=arg))
-        yield list(arg)
+        setattr(instance, "var_{}".format(index), arg)
         index += 1
-    print("end")
+    for key, value in kwargs.items():
+        if hasattr(instance, key):
+            return None
+        setattr(instance, key, value)
+    return instance
 
 class ObjectC(object):
     def __init__(self):
