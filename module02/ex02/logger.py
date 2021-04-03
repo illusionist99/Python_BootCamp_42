@@ -5,11 +5,13 @@ from random import randint
 
 
 def log(func):
+    f = open("machine.log", "a")
     def wrapper(*args):
         start_time = time.time()
         if callable(func):
             func()
-        print("(cmaxime)Running: {} [ exec-time = {}]".format(str(func), (time.time() - start_time)))
+        f.write("(cmaxime)Running: {} [ exec-time = {}]".format(str(func), (time.time() - start_time)))
+        f.close()
     return wrapper
 
 
