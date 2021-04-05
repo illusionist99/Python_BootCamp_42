@@ -3,7 +3,6 @@ import sys
 
 n = 0
 
-
 def ft_progress(lst):
     global n
     len_ = len(lst)
