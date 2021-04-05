@@ -5,12 +5,13 @@ from random import randint
 
 
 def log(func):
-    f = open("machine.log", "a")
+
     def wrapper(*args):
+        f = open("machine.log", "a")
         start_time = time.time()
         if callable(func):
-            func()
-        f.write("(cmaxime)Running: {} [ exec-time = {}]".format(str(func), (time.time() - start_time)))
+            func(*args)
+        f.write(f'(cmaxime)Running: {func.__name__:<8} [ exec-time = {func.__name__} ]\n')
         f.close()
     return wrapper
 
@@ -22,21 +23,20 @@ class CoffeeMachine():
     def start_machine(self):
         if self.water_level > 20:
             return True
-        else:
-            print("Please add water!")
-            return False
+        print("Please add water!")
+        return False
 
     @log
     def boil_water(self):
-        return "boiling..."
+        print("boiling...")
 
     @log
     def make_coffee(self):
-        if self.start_machine():
+        if not self.start_machine():
             for _ in range(20):
                 time.sleep(0.1)
                 self.water_level -= 1
-            print(self.boil_water())
+            self.boil_water()
             print("Coffee is ready!")
 
     @log
