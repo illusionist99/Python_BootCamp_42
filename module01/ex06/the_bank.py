@@ -7,7 +7,7 @@ class Account(object):
         self.id = self.ID_COUNT
         self.name = name
         self.__dict__.update(kwargs)
-        if hasattr(self, 'value'):
+        if not hasattr(self, 'value'):
             self.value = 0
         Account.ID_COUNT += 1
 
@@ -25,12 +25,11 @@ def has_attr_b(lst):
 def remove_attr(corrupted_account):
     lst = dir(corrupted_account)
     for key in lst:
-        if 'b' == key[0]:
+        if key.find('b') != -1:
             delattr(corrupted_account, key)
 
 
-
-class Bank:
+class Bank(object):
     """The bank"""
 
     def __init__(self):
@@ -48,46 +47,63 @@ class Bank:
         :param amount: float(amount) amount to transfer
         :return: True if success, False is an error occured
         """
-        if not isinstance(self, Bank):
+        if amount < 0:
             return False
 
-        if not (isinstance(origin, int) and isinstance(origin, str)):
+        if not isinstance(origin, int) and not isinstance(origin, str):
             return False
 
-        if not (isinstance(dest, int) and isinstance(dest, str)):
+        if not isinstance(dest, int) and not isinstance(dest, str):
             return False
 
-        origin_class = dir(origin)
-        dest_class = dir(dest)
+        for acc in self.account:
+            if getattr(acc, "name") == origin or getattr(acc, "id") == origin:
+                origin_bank_instance = acc
+            elif getattr(acc, "name") == dest or getattr(acc, "id") == dest:
+                dest_bank_instance = acc
 
-        if len(origin_class) % 2 != 0 or len(dest_class) % 2 != 0:
+        origin_class = dir(origin_bank_instance)
+        dest_class = dir(dest_bank_instance)
+
+        # print(origin_class, dest_class)
+
+        # print(dest_bank_instance.name)
+        # print(dest_bank_instance.id)
+        # print(dest_bank_instance.value)
+        #
+        # print(origin_bank_instance.name)
+        # print(origin_bank_instance.id)
+        # print(origin_bank_instance.value)
+        if len(origin_class) % 2 != 0 and len(dest_class) % 2 != 0:
             return False
 
         if has_attr_b(origin_class) or has_attr_b(dest_class):
             return False
 
-        if not hasattr(self, 'name'):
+        if not hasattr(origin_bank_instance, 'name'):
             return False
 
-        if not hasattr(self, 'id'):
+        if not hasattr(dest_bank_instance, 'name'):
             return False
 
-        if hasattr(self, 'value'):
+        if not hasattr(origin_bank_instance, 'id'):
+            return False
+
+        if not hasattr(dest_bank_instance, 'id'):
+            return False
+
+        if not hasattr(origin_bank_instance, 'value'):
+            return False
+
+        if not hasattr(dest_bank_instance, 'value'):
             return False
 
         if (not isinstance(amount, float)) or amount < 0:
             return False
-        if Account(origin).value != amount:
-            return False
-        else:
-            Account(origin).value -= amount
-            Account(dest).value += amount
+        origin_bank_instance.value -= amount
+        dest_bank_instance.transfer(amount)
         return True
 
-
-
-
-    # noinspection PyMethodMayBeStatic
     def fix_account(self, account):
         """
         fix the corrupted account
@@ -96,21 +112,28 @@ class Bank:
         """
         if not (isinstance(account, int) and isinstance(account, str)):
             return False
-        corrupted_account = Account(account)
-        account_class = dir(corrupted_account)
-        if has_attr_b(account_class):
-            remove_attr(corrupted_account)
+        print(account)
+        origin_bank = self.account[0]
 
-        if not hasattr(self, 'name'):
+        if has_attr_b(origin_bank):
+            remove_attr(origin_bank)
+
+        print(origin_bank.name)
+        if not hasattr(origin_bank, 'value'):
+            origin_bank.value = 0
+        print(origin_bank.value)
+        if not hasattr(origin_bank, 'zip'):
+            origin_bank.zip = ""
+        print(origin_bank.id)
+        # Well I can' t Fix his name
+        if not hasattr(origin_bank, 'name'):
             return False
 
-        if not hasattr(self, 'id'):
+        # Well I can' t Fix his id
+        if not hasattr(origin_bank, 'id'):
             return False
 
-        if hasattr(self, 'value'):
-            return False
+        # Well 0 is no debt XD
         return True
 
 
-x = Account("name")
-print(dir(x))
