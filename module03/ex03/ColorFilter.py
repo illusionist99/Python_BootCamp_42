@@ -2,7 +2,7 @@
 from ImageProcessor import ImageProcessor
 from matplotlib import pyplot
 from PIL import Image
-import numpy
+from numpy import zeros, uint8, arange
 
 class ColorFilter:
 
@@ -15,6 +15,8 @@ class ColorFilter:
         """
         # Maximum intensity value of the color mode
         new_array = 255 - array
+        for i in range(3, len(array[0][0])):
+            new_array[:, :, i] = array[:, :, i]
         return new_array
 
     @staticmethod
@@ -24,10 +26,11 @@ class ColorFilter:
         Authorized functions: .zeros, .shape
         Authorized operator: None
         """
-        blue = array
-
-        blue[:, :, 1] = 0
-        blue[:, :, 0] = 0
+        blue = zeros(array.shape, dtype=uint8)
+        # r,g,b = array
+        blue[:, :, 2] = array[:, :, 2]
+        for i in range(3, len(array[0][0])):
+            blue[:, :, i] = array[:, :, i]
         return blue
 
     @staticmethod
@@ -37,7 +40,12 @@ class ColorFilter:
         Authorized functions: None
         Authorized operator: *
         """
-        pass
+        green = zeros(array.shape, dtype=uint8)
+        # r,g,b = array
+        green[:, :, 1] = array[:, :, 1]
+        for i in range(3, len(array[0][0])):
+            green[:, :, i] = array[:, :, i]
+        return green
 
     @staticmethod
     def to_red(array):
@@ -46,7 +54,13 @@ class ColorFilter:
         Authorized functions : to_green, to_blue
         Authorized operator: -, +
         """
-        pass
+        # call to_green ot to_blue use to_green.__func__
+        red = zeros(array.shape, dtype=array.dtype)
+        # r,g,b = array
+        red[:, :, 0] = array[:, :, 0]
+        for i in range(3, len(array[0][0])):
+            red[:, :, i] = array[:, :, i]
+        return red
 
     @staticmethod
     def to_celluloid(array):
@@ -55,17 +69,26 @@ class ColorFilter:
         The celluloid filter must display at least four thresholds of shades.
         Be careful! You are not asked to apply black contour on the object here
         (you will have to, but later...), you only have to work on the shades of your images.
-        Authorized functions: .arange, linspace
+        Authorized functions: arange, linspace
         """
-        pass
+
+        for i in range(2):
+            array[array[:, :, i] <= 64, 0] = 0
+            array[((array <= 128) & (array > 64))[:, :, i], 0] = 64
+            array[array[:, :, i] > 128, 0] = 128
+        return array
 
 
 imp = ImageProcessor()
-arr = imp.load("42AI.png")
+arr = imp.load("gg.png")
 
-# cf = ColorFilter()
-# newarry = cf.invert(arr)
-ImageProcessor.display(arr)
+cf = ColorFilter()
+
+#
+# ImageProcessor.display(arr)
+
+newarry = cf.invert(arr)
+ImageProcessor.display(newarry)
 # x = ImageProcessor()
 #
 # a = ImageProcessor.load("42AI.png")
@@ -73,10 +96,22 @@ ImageProcessor.display(arr)
 #
 # ImageProcessor.display(a)
 
-
-# inverted_img = Image.fromarray((newarry * 255).astype(numpy.uint8))
 #
-# newarry2 = cf.to_blue(arr)
-# inverted_img = Image.fromarray((newarry2).astype(numpy.uint8))
+# r, g, b = arr
+# ImageProcessor.display(r)
+# ImageProcessor.display(g)
+# ImageProcessor.display(b)
+
+newarry2 = cf.to_blue(arr)
+ImageProcessor.display(newarry2)
+#
+newf = cf.to_green(arr)
+ImageProcessor.display(newf)
+
+newf0 = cf.to_red(arr)
+ImageProcessor.display(newf0)
+
+newf01 = cf.to_celluloid(arr)
+ImageProcessor.display(newf01)
 
 

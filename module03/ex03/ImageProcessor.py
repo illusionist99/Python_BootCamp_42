@@ -8,9 +8,12 @@ class ImageProcessor:
     def load(path):
         # load image as pixel array
         img = image.imread(path)
+
         # convert image to numpy array
-        array = asarray(img, dtype=uint8)
-        print("Loading image of dimensions {} * {}".format(img.shape[0], img.shape[1]))
+        array = asarray(img)
+        array = (array * 255).astype(uint8)
+
+        print("Loading image of dimensions {} * {} and shape : {}".format(img.shape[0], img.shape[1], array.shape))
         return array
 
     @staticmethod
