@@ -28,7 +28,19 @@ class ScrapBooker:
         :param axis:
         :return:
         """
-        return numpy.delete(array, n, axis)
+        new_array = []
+        if axis == 0:
+            for i in range(len(array)):
+                lst = []
+                for j in range(len(array[i])):
+                    if not (j + 1) % n == 0:
+                        lst.append(array[i][j])
+                new_array.append(lst)
+        elif axis == 1:
+            for i in range(len(array)):
+                if not (i + 1) % n == 0:
+                    new_array.append(array[i])
+        return numpy.asarray(new_array)
 
     @staticmethod
     def juxtapose(array, n, axis):
@@ -41,7 +53,7 @@ class ScrapBooker:
         """
         c = array
         for i in range(n):
-            c = numpy.concatenate(c, array, axis)
+            c = numpy.concatenate((c, array), axis, dtype=type(array))
         return c
 
     @staticmethod
@@ -54,5 +66,37 @@ class ScrapBooker:
         :param dimensions:
         :return:
         """
-        pass
+        y = dimensions[0]
+        x = dimensions[1]
+        big_lst = []
+        sub_list = []
+
+        print(x, y)
+        if y > 0:
+            for j in range(len(array) + y):
+             sub_list = []
+             if x > 0:
+                j = j % len(array)
+                for i in range(len(array[j]) + x):
+                    i = i % len(array[j])
+                    sub_list.append(array[j][i][:x])
+                big_lst.append(sub_list)
+        return numpy.asarray(big_lst)
+
+array = numpy.chararray((11, 12), unicode=True)
+i = 0
+j = 0
+while j < 11:
+    while i < 12:
+        array[j][i] = chr(65 + i)
+        i += 1
+    i = 0
+    j += 1
+
+new_array = ScrapBooker.thin(array, n=4, axis=1)
+n = ScrapBooker.juxtapose(array, 1, 1)
+print(new_array)
+m = ScrapBooker.mosaic(array, (2, 2))
+print(m)
+#print(n)
 
