@@ -1,7 +1,7 @@
 # Os Generated Files 
 
 *.DS_Store
-.DS_Store?
+*__pycache*
 ._*
 .Spotlight-V100
 .Trashes

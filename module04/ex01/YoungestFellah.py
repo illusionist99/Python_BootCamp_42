@@ -33,6 +33,6 @@ def youngestFellah(df, year):
 
 loader = FileLoader()
 
-data = loader.load('athlete_events.csv')
+data = loader.load('../data/athlete_events.csv')
 d = youngestFellah(data, 2004)
 print(d)
