@@ -13,6 +13,7 @@ class FileLoader:
             df = read_csv(path)
         except FileNotFoundError:
             exit("Error In File Path")
+        print("Loading dataset of dimensions {} x {}".format(df.shape[0], df.shape[1]))
         return df
 
     @staticmethod
@@ -26,6 +27,3 @@ class FileLoader:
             print(df.head(n))
         elif n < 0:
             print(df.tail(-n))
-
-df = FileLoader.load("trees.csv")
-FileLoader.display(df, 3)
