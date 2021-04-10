@@ -3,6 +3,8 @@ import random
 import numpy
 import time
 import matplotlib.pyplot as plt
+
+
 class KmeansClustering:
     def __init__(self, max_iter=20, ncentroid=3):
         self.ncentroid = ncentroid  # number of centroids
@@ -20,24 +22,53 @@ class KmeansClustering:
         Raises:
           This function should not raise any Exception.
         """
-        plt.plot(array, linestyle=' ', marker='o')
         (x, y) = X.shape
+        print(x, y)
         for i in range(self.ncentroid):
-            t0 = random.randrange(y)
+            t0 = random.randrange(x)
             t1 = random.randrange(y)
-            plt.plot(t0, t1, linestyle=' ', marker='o')
-            self.centroids.append((t0, t1))
+            print(t0, t1)
+            self.centroids.append(array[t0][t1])
 
-        j = 0
-        distance = []
-        k_distances = []
-        while j < y:
-            i = 0
-            while i < x:
-                for (x0, y0) in self.centroids:
-                    distance.append(((x0 - i) ** 2 + (y0 - y) ** 2) ** 0.5)
-                i += 1
-            j += 1
+        plt.plot(array, linestyle=' ', marker='o')
+        plt.plot(self.centroids, linestyle=' ', marker='o')
+#         d = {}
+#         f = 0
+#         for i in self.centroids:
+#             d["centroid_{}".format(f)] = []
+#             f += 1
+#
+#         # print(d)
+#         # exit()
+#         j = 0
+#         i = 0
+#         k = 0
+#         print(len(array))
+#         while k < len(self.centroids):
+#             j = 0
+#             while j < len(array):
+#                 i = 0
+#                 while i < len(array[j]):
+#                     dist = (self.centroids[k][1] - i) ** 2 + (self.centroids[k][0] - j) ** 2
+#                     d["centroid_{}".format(k)].append(numpy.sqrt(dist))
+#                     i += 1
+#                 j += 1
+#             k += 1
+#         print(d)
+#         i = 0
+#         j = 0
+#         k = 0
+#         while i < len(array[j]):
+#             k = 0
+#             while k < len(self.centroids):
+#                 if
+#     #     Assign closest point to closest cluster
+
+
+
+
+
+
 
 
     def predict(self, X):
